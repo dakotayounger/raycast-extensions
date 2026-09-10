@@ -11,10 +11,11 @@ Once these are in the [Raycast Store](https://www.raycast.com/store), open Rayca
 
 Do not clone this repo to install. GitHub is for the source code only.
 
-Store links (filled in after Raycast accepts the listings):
+Store links (filled in after Raycast accepts the listings). Both were submitted on
+2026-09-09 and are awaiting Raycast review:
 
-- Magic Formatter — pending review
-- Magic Eraser — pending review
+- Magic Formatter — [submission #30947](https://github.com/raycast/extensions/pull/30947)
+- Magic Eraser — [submission #30948](https://github.com/raycast/extensions/pull/30948)
 
 ## For Dakota (rebuild after a Raycast update)
 
@@ -35,3 +36,12 @@ cd ../magic-eraser && npm run publish
 ```
 
 That opens a pull request on [raycast/extensions](https://github.com/raycast/extensions). After Raycast merges it, anyone can install from the Store.
+
+Run those two commands **one at a time**. The first publish on a new machine asks you to
+authorize Raycast against GitHub in the browser, and if a second command is already sitting
+in the terminal it gets swallowed by that prompt — the authorization silently never
+completes and publish fails with `fork extensions repo: forbidden`.
+
+The publish flow forks [raycast/extensions](https://github.com/raycast/extensions) to your
+account and keeps a working clone in `~/.config/raycast/public-extensions-fork`. That fork is
+`dakotayounger/extensions`; leave it in place so later publishes reuse it.
