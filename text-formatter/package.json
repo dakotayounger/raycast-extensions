@@ -4,7 +4,7 @@
   "title": "Magic Formatter",
   "description": "Re-space clipboard text into clean paragraphs while preserving bold, italics, and bullets — pastes correctly into both rich-text (Gmail/Docs) and markdown (Slack/Notion) tools",
   "icon": "icon.png",
-  "author": "dakota",
+  "author": "dakota_younger",
   "categories": [
     "Productivity"
   ],
