@@ -35,7 +35,7 @@ export function htmlToMarkdown(html: string): string {
       };
       const tag = el.nodeName.toLowerCase();
       if (tag !== "div" && tag !== "p") return false;
-      const text = (el.textContent ?? "").replace(/ /g, " ").trim();
+      const text = (el.textContent ?? "").replace(/\u00a0/g, " ").trim();
       const onlyBr = el.children.length === 1 && el.children[0].nodeName.toLowerCase() === "br";
       return text === "" && (onlyBr || el.childNodes.length === 0);
     },
@@ -43,7 +43,7 @@ export function htmlToMarkdown(html: string): string {
   });
 
   let md = td.turndown(html);
-  md = md.replace(/ /g, " ");
+  md = md.replace(/\u00a0/g, " ");
   md = md.replace(/[ \t]+\n/g, "\n");
   md = md.replace(/\n{3,}/g, "\n\n");
   return md.trim();

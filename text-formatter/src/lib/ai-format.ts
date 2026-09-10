@@ -47,7 +47,9 @@ export async function aiFormat(text: string, opts: AiFormatOptions): Promise<str
     throw new Error(`Anthropic API ${res.status}${detail ? `: ${detail.slice(0, 200)}` : ""}`);
   }
 
-  const data = (await res.json()) as { content: Array<{ type: string; text: string }> };
+  const data = (await res.json()) as {
+    content: Array<{ type: string; text: string }>;
+  };
   const result = data.content.find((b) => b.type === "text")?.text;
   if (!result) throw new Error("Empty response from Claude");
   return result.trim();

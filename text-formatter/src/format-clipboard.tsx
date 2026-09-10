@@ -65,7 +65,10 @@ async function run() {
     }
     try {
       await showHUD("🤖 Formatting with Claude…");
-      formatted = await aiFormat(input, { apiKey: prefs.anthropicApiKey!.trim(), model });
+      formatted = await aiFormat(input, {
+        apiKey: prefs.anthropicApiKey!.trim(),
+        model,
+      });
       usedEngine = "AI";
     } catch (e) {
       await showHUD(`❌ AI failed: ${e instanceof Error ? e.message : "unknown error"}`);
@@ -77,7 +80,10 @@ async function run() {
   } else if (prefs.engine === "auto" && hasKey) {
     try {
       await showHUD("🤖 Formatting with Claude…");
-      formatted = await aiFormat(input, { apiKey: prefs.anthropicApiKey!.trim(), model });
+      formatted = await aiFormat(input, {
+        apiKey: prefs.anthropicApiKey!.trim(),
+        model,
+      });
       usedEngine = "AI";
     } catch {
       formatted = offlineFormat(input); // graceful degrade
@@ -93,7 +99,6 @@ async function run() {
   const richHtml = markdownToHtml(formatted);
   await Clipboard.copy({ text: formatted, html: richHtml });
 
-  const label =
-    usedEngine === "AI" ? "✅ Formatted (Claude) — ready to paste" : "✅ Formatted — ready to paste";
+  const label = usedEngine === "AI" ? "✅ Formatted (Claude) — ready to paste" : "✅ Formatted — ready to paste";
   await showHUD(label);
 }
